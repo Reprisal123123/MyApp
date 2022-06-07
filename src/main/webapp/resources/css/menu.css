@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 100px;
+    background-color: skyblue;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo {
+    height: 100px;
+    line-height: 100px;
+}
+
+#logo h1 {
+    font-family:'Merienda', cursive;
+    color: black;
+    text-align: center;
+}
+
+#topmenu {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#topmenu > li {
+    width: 140px;
+    text-align: center;
+}
+
+#topmenu > li > a {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+#topmenu > li > a:hover {
+    border-bottom: 3px solid white;
+}
