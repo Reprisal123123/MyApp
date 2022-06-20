@@ -9,6 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap');
@@ -17,7 +18,7 @@
 		#contents {
 			display: grid;
 			width: 70%;
-			margin: 95px auto;
+			margin: 90px auto;
 			background-color: white;
 			grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
 		}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youtubealbum.myapp.dao.UserMapper">
+    <insert id="insert" parameterType="UserDto">
+        INSERT INTO `user-info` (id, pwd, name, birth, sex, email, tel, reg_date)
+        VALUES (#{id}, #{pwd}, #{name}, #{birth}, #{sex}, #{email}, #{tel}, #{reg_date})
+    </insert>
+
+    <select id="select" parameterType="String" resultType="UserDto">
+        SELECT id, pwd, name, birth, sex, email, tel, reg_date
+        FROM `user-info`
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="UserDto">
+        UPDATE `user-info`
+        SET pwd = #{pwd}, name = #{name}, birth = #{birth}, sex = #{sex}, email = #{email}, tel = #{tel}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM `user-info` WHERE pwd = #{pwd}
+    </delete>
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM `user-info`
+    </select>
+</mapper>
