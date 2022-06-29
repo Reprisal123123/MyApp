@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page import="java.net.URLDecoder"%>
 <%@ page session="false" %>
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 400px;
+            width: 450px;
             margin: 100px auto;
             border: 5px solid rgb(89,117,196);
             border-radius: 10px;
@@ -42,7 +44,7 @@
             margin-left: 5px;
         }
         .input-field {
-            width: 300px;
+            width: 350px;
             height: 30px;
             border : 1px solid rgb(89,117,196);
             border-radius:10px;
@@ -71,49 +73,72 @@
     </style>
 </head>
 <body>
-<form>
+<form action="<c:url value="/register"/>" method="POST">
     <div id="title">Register</div>
     <div class="form-group">
         <label for="reg-id">아이디</label>
-        <input class="input-field" id="reg-id" name="id" type="text" placeholder="8~13자리의 영대소문자와 숫자 조합">
+        <input class="input-field" id="reg-id" name="id" type="text" placeholder="8~12자리의 영문 소문자와 숫자 조합">
         <div class="check_font" id="id_check"></div>
     </div>
     <div class="form-group">
         <label for="reg-pwd">비밀번호</label>
-        <input class="input-field" id="reg-pwd" name="pwd" type="password" placeholder="8~13자리의 영대소문자와 숫자, 특수문자 조합">
+        <input class="input-field" id="reg-pwd" name="pwd" type="password" placeholder="8~12자리의 영대소문자와 숫자, 특수문자 조합">
+        <div class="check_font" id="pwd_check"></div>
     </div>
     <div class="form-group">
         <label for="reg-name">이름</label>
-        <input class="input-field" id="reg-name" name="name" type="text">
+        <input class="input-field" id="reg-name" name="name" type="text" value="<c:out value='${userDto.name}'/>">
     </div>
     <div class="form-group">
         <label for="reg-birth">생일</label>
-        <input class="input-field" id="reg-birth" name="birth" type="date">
+        <input class="input-field" id="reg-birth" name="birth" type="date" value="<c:out value='${userDto.birth}'/>">
     </div>
     <div class="form-group">
         <label for="reg-sex">성별</label>
-        <select class="input-field" id="reg-sex">
-            <option name="sex" value="male" selected>남자</option>
-            <option name="sex" value="female">여자</option>
+        <select class="input-field" id="reg-sex" name="sex">
+            <option value="male" selected>남자</option>
+            <option value="female">여자</option>
         </select>
     </div>
     <div class="form-group">
         <label for="reg-email">이메일</label>
-        <input class="input-field" id="reg-email" name="email" type="email" placeholder="example@album.com">
+        <input class="input-field" id="reg-email" name="email" type="email" value="<c:out value='${userDto.email}'/>"placeholder="example@album.com">
     </div>
     <div class="form-group">
         <label for="reg-tel">휴대전화</label>
-        <input class="input-field" id="reg-tel" name="tel" type="tel" placeholder="전화번호 입력">
+        <input class="input-field" id="reg-tel" name="tel" type="tel" value="<c:out value='${userDto.tel}'/>"placeholder="전화번호 입력">
     </div>
     <button>회원 가입</button>
 </form>
+
 <script>
+    function idCheck() {
+        let id = $('#reg-id').val();
+        let checkResult;
+
+        $.ajax({
+            type: 'POST',
+            url: '/myapp/idCheck',
+            headers: {"content-type": "application/json"},
+            data: id,
+            async: false,
+            success: function(result) {
+                checkResult = JSON.parse(result);
+            },
+            error: function() {
+                alert("idcheck error");
+            }
+        }); // $.ajax()
+
+        return checkResult;
+    }
+
     //모든 공백 체크 정규식
     var empJ = /\s/g;
     //아이디 정규식
-    var idJ = /^[a-z0-9]{8,13}$/;
-    // 비밀번호 정규식
-    var pwJ = /^[A-Za-z0-9]{4,12}$/;
+    var idJ = /^[a-z0-9]{8,12}$/;
+    // 비밀번호 정규식, 영문, 숫자, 특수기호(!@$%^&* 만 허용)
+    var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
     // 이름 정규식
     var nameJ = /^[가-힣]{2,6}$/;
     // 이메일 검사 정규식
@@ -123,14 +148,33 @@
 
     // 아이디 유효성 검사
     $('#reg-id').blur(function() {
+
         if (idJ.test($('#reg-id').val())) {
-            $('#id_check').text('사용가능한 아이디 입니다.');
-            $('#id_check').css('color', 'blue');
+            if(idCheck()) {
+                $('#id_check').text('사용가능한 아이디 입니다.');
+                $('#id_check').css('color', 'blue');
+            } else {
+                $('#id_check').text('이미 사용중인 아이디 입니다.');
+                $('#id_check').css('color', 'red');
+            }
         } else {
-            $('#id_check').text('8~13자리의 영대소문자와 숫자 조합을 입력하세요.');
+            $('#id_check').text('8~12자리의 영문 소문자와 숫자 조합을 입력하세요.');
             $('#id_check').css('color', 'red');
         }
     });
+
+    // 비밀번호 유효성 검사
+    $('#reg-pwd').blur(function() {
+
+        if (pwJ.test($('#reg-pwd').val())) {
+            $('#pwd_check').text('사용가능한 비밀번호 입니다.');
+            $('#pwd_check').css('color', 'blue');
+        } else {
+            $('#pwd_check').text('8~12자리의 영대소문자와 숫자, 특수기호 조합을 입력하세요.');
+            $('#pwd_check').css('color', 'red');
+        }
+    });
+
 </script>
 </body>
 </html>

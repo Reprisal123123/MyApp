@@ -20,7 +20,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+	<!-- 회원가입 검증하는 validator -->
+	<annotation-driven validator="globalValidator"/>
+	<beans:bean id="globalValidator" class="com.youtubealbum.myapp.domain.GlobalValidator"/>
+
 	<context:component-scan base-package="com.youtubealbum.myapp" />
 
 </beans:beans>

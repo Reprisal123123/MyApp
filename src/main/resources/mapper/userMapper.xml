@@ -4,8 +4,8 @@
 
 <mapper namespace="com.youtubealbum.myapp.dao.UserMapper">
     <insert id="insert" parameterType="UserDto">
-        INSERT INTO `user-info` (id, pwd, name, birth, sex, email, tel, reg_date)
-        VALUES (#{id}, #{pwd}, #{name}, #{birth}, #{sex}, #{email}, #{tel}, #{reg_date})
+        INSERT INTO `user-info` (id, pwd, name, birth, sex, email, tel)
+        VALUES (#{id}, #{pwd}, #{name}, #{birth}, #{sex}, #{email}, #{tel})
     </insert>
 
     <select id="select" parameterType="String" resultType="UserDto">
@@ -22,6 +22,10 @@
 
     <delete id="delete" parameterType="String">
         DELETE FROM `user-info` WHERE pwd = #{pwd}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM `user-info`
     </delete>
 
     <select id="count" resultType="int">

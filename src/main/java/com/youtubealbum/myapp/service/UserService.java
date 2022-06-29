@@ -1,9 +1,9 @@
-package com.youtubealbum.myapp.dao;
+package com.youtubealbum.myapp.service;
 
 import com.youtubealbum.myapp.domain.UserDto;
 
-public interface UserDao {
-    int insertUser(UserDto userDto) throws Exception;
+public interface UserService {
+    int registerUser(UserDto userDto) throws Exception;
 
     UserDto selectUser(String id) throws Exception;
 

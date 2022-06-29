@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <title>회원 가입 완료</title>
     <style>
         #contents {
@@ -38,7 +40,7 @@
             <ul id="topmenu">
                 <li><a href="#">갤러리</a></li>
                 <li><a href="#">나의 앨범</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="<c:url value='/register'/>">회원가입</a></li>
                 <li><a href="#">로그인</a></li>
             </ul>
         </nav>

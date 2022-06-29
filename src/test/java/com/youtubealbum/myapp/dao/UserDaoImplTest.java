@@ -20,16 +20,17 @@ public class UserDaoImplTest {
 
     @Test
     public void insertUserTest() throws Exception {
+
         for (int i = 1; i < 5; i++) {
             UserDto userDto = new UserDto("reprisal" + i, "1234", "kim", new Date(), "male", "aaa@aaa.com", "01012341234");
             int rowCnt = userDao.insertUser(userDto);
             assertTrue(rowCnt == 1);
         }
-
     }
 
     @Test
     public void selectUser() {
+
     }
 
     @Test

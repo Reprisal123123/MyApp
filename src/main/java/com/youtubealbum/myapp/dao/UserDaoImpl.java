@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int selectUser(String id) throws Exception {
+    public UserDto selectUser(String id) throws Exception {
         return session.selectOne(namespace + "select", id);
     }
 
@@ -31,5 +31,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int deleteUser(String pwd) throws Exception {
         return session.delete(namespace + "delete", pwd);
+    }
+
+    @Override
+    public int deleteAllUser() throws Exception {
+        return session.delete(namespace+"deleteAll");
     }
 }
