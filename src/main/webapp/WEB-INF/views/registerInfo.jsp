@@ -32,7 +32,7 @@
 <div id="container">
     <header>
         <div id="logo">
-            <a href="index.html">
+            <a href="<c:url value='/'/>">
                 <h1>Youtube Album</h1>
             </a>
         </div>
@@ -41,7 +41,7 @@
                 <li><a href="#">갤러리</a></li>
                 <li><a href="#">나의 앨범</a></li>
                 <li><a href="<c:url value='/register'/>">회원가입</a></li>
-                <li><a href="#">로그인</a></li>
+                <li><a href="<c:url value='/login'/>">로그인</a></li>
             </ul>
         </nav>
     </header>

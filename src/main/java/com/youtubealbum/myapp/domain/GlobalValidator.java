@@ -30,5 +30,6 @@ public class GlobalValidator implements Validator {
             errors.rejectValue("pwd", "invalidLength");
         }
 
+
     }
 }

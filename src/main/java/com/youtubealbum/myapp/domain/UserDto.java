@@ -8,19 +8,19 @@ public class UserDto {
     private String pwd; // 비밀번호
     private String name; // 이름
     private Date birth; // 생일
-    private String sex; // 성별
+    private String gender; // 성별
     private String email; // 이메일
     private String tel; // 휴대전화
     private Date reg_date; // 가입일
 
     public UserDto() {}
 
-    public UserDto(String id, String pwd, String name, Date birth, String sex, String email, String tel) {
+    public UserDto(String id, String pwd, String name, Date birth, String gender, String email, String tel) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;
         this.birth = birth;
-        this.sex = sex;
+        this.gender = gender;
         this.email = email;
         this.tel = tel;
     }
@@ -30,12 +30,12 @@ public class UserDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDto userDto = (UserDto) o;
-        return Objects.equals(id, userDto.id) && Objects.equals(pwd, userDto.pwd) && Objects.equals(name, userDto.name) && Objects.equals(birth, userDto.birth) && Objects.equals(sex, userDto.sex) && Objects.equals(email, userDto.email) && Objects.equals(tel, userDto.tel);
+        return Objects.equals(id, userDto.id) && Objects.equals(pwd, userDto.pwd) && Objects.equals(name, userDto.name) && Objects.equals(birth, userDto.birth) && Objects.equals(gender, userDto.gender) && Objects.equals(email, userDto.email) && Objects.equals(tel, userDto.tel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pwd, name, birth, sex, email, tel);
+        return Objects.hash(id, pwd, name, birth, gender, email, tel);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UserDto {
                 ", pwd='" + pwd + '\'' +
                 ", name='" + name + '\'' +
                 ", birth=" + birth +
-                ", sex='" + sex + '\'' +
+                ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
                 ", tel='" + tel + '\'' +
                 ", reg_date=" + reg_date +
@@ -84,12 +84,12 @@ public class UserDto {
         this.birth = birth;
     }
 
-    public String getSex() {
-        return sex;
+    public String getgender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setgender(String gender) {
+        this.gender = gender;
     }
 
     public String getEmail() {
