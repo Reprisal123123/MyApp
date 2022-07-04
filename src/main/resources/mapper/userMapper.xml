@@ -4,19 +4,19 @@
 
 <mapper namespace="com.youtubealbum.myapp.dao.UserMapper">
     <insert id="insert" parameterType="UserDto">
-        INSERT INTO `user-info` (id, pwd, name, birth, sex, email, tel)
-        VALUES (#{id}, #{pwd}, #{name}, #{birth}, #{sex}, #{email}, #{tel})
+        INSERT INTO `user-info` (id, pwd, name, birth, gender, email, tel)
+        VALUES (#{id}, #{pwd}, #{name}, #{birth}, #{gender}, #{email}, #{tel})
     </insert>
 
     <select id="select" parameterType="String" resultType="UserDto">
-        SELECT id, pwd, name, birth, sex, email, tel, reg_date
+        SELECT id, pwd, name, birth, gender, email, tel, reg_date
         FROM `user-info`
         WHERE id = #{id}
     </select>
 
     <update id="update" parameterType="UserDto">
         UPDATE `user-info`
-        SET pwd = #{pwd}, name = #{name}, birth = #{birth}, sex = #{sex}, email = #{email}, tel = #{tel}
+        SET pwd = #{pwd}, name = #{name}, birth = #{birth}, gender = #{gender}, email = #{email}, tel = #{tel}
         WHERE id = #{id}
     </update>
 
