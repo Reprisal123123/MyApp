@@ -9,6 +9,7 @@ public class AlbumDto {
     String writer;
     String comment;
 
+    // test
     public AlbumDto(String title, String link, String writer, String comment) {
         this.title = title;
         this.link = link;
