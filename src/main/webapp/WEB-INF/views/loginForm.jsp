@@ -106,6 +106,7 @@
         </div>
         <input class="input-field" id="login-id" name="id" value="${cookie.id.value}" type="text" placeholder="아이디">
         <input class="input-field" id="login-pwd" name="pwd" type="password" placeholder="비밀번호">
+        <input type="hidden" name="toURL" value="${param.toURL}">
         <button>로그인</button>
         <div>
             <label><input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value ? "":"checked"}> 아이디 기억</label> |

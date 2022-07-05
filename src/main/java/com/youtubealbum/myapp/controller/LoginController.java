@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(String id, String pwd, boolean rememberId,
+    public String login(String id, String pwd, String toURL, boolean rememberId,
                         HttpServletRequest request, HttpServletResponse response) {
 
         // 1. 아이디 비번 일치 확인
@@ -70,7 +70,9 @@ public class LoginController {
             response.addCookie(cookie);
         }
 
-        return "redirect:/";
+        // toURL이 있으면 해당 URL로 redirect 한다.
+        toURL = (toURL == null || toURL.equals("") ? "/" : toURL);
+        return "redirect:" + toURL;
     }
 
     // 로그인 아이디, 비밀번호가 DB와 일치하는지 체크하는 메서드
