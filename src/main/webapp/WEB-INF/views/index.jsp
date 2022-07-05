@@ -86,7 +86,7 @@
 				<ul id="topmenu">
 					<li><a href="">${loginId}</a></li>
 					<li><a href="">갤러리</a></li>
-					<li><a href="">나의 앨범</a></li>
+					<li><a href="<c:url value='/album/list'/>">나의 앨범</a></li>
 					<li><a href="<c:url value='/register'/>">회원가입</a></li>
 					<li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
 				</ul>

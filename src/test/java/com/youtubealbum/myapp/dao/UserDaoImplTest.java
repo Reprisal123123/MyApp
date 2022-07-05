@@ -21,6 +21,7 @@ public class UserDaoImplTest {
     @Test
     public void insertUserTest() throws Exception {
 
+        // Dto 객체를 4개 생성해서 집어넣는다.
         for (int i = 1; i < 5; i++) {
             UserDto userDto = new UserDto("reprisal" + i, "1234", "kim", new Date(), "male", "aaa@aaa.com", "01012341234");
             int rowCnt = userDao.insertUser(userDto);

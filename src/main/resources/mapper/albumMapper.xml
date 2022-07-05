@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youtubealbum.myapp.dao.AlbumMapper">
+    <insert id="insert" parameterType="AlbumDto">
+        INSERT INTO album (title, link, writer, comment)
+        VALUES (#{title}, #{link}, #{writer}, #{comment})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="AlbumDto">
+        SELECT ano, title, link, writer, comment
+        FROM album
+        WHERE ano = #{ano}
+    </select>
+
+    <select id="selectAll" parameterType="String" resultType="AlbumDto">
+        SELECT ano, title, link, writer, comment
+        FROM album
+        WHERE writer = #{writer}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM album
+    </select>
+
+    <update id="update" parameterType="AlbumDto">
+        UPDATE album
+        SET title = #{title}, link = #{link}, comment = #{comment}
+        WHERE ano = #{ano}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM album
+        WHERE ano = #{ano}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM album
+    </delete>
+
+</mapper>
