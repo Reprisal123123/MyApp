@@ -4,18 +4,18 @@
 
 <mapper namespace="com.youtubealbum.myapp.dao.AlbumMapper">
     <insert id="insert" parameterType="AlbumDto">
-        INSERT INTO album (title, link, writer, comment)
-        VALUES (#{title}, #{link}, #{writer}, #{comment})
+        INSERT INTO album (title, sigid, writer, comment)
+        VALUES (#{title}, #{sigid}, #{writer}, #{comment})
     </insert>
 
     <select id="select" parameterType="int" resultType="AlbumDto">
-        SELECT ano, title, link, writer, comment
+        SELECT ano, title, sigid, writer, comment
         FROM album
         WHERE ano = #{ano}
     </select>
 
     <select id="selectAll" parameterType="String" resultType="AlbumDto">
-        SELECT ano, title, link, writer, comment
+        SELECT ano, title, sigid, writer, comment
         FROM album
         WHERE writer = #{writer}
     </select>
@@ -26,7 +26,7 @@
 
     <update id="update" parameterType="AlbumDto">
         UPDATE album
-        SET title = #{title}, link = #{link}, comment = #{comment}
+        SET title = #{title}, sigid = #{sigid}, comment = #{comment}
         WHERE ano = #{ano}
     </update>
 

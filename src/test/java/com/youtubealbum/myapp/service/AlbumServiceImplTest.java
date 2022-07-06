@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,23 +19,29 @@ public class AlbumServiceImplTest {
     @Autowired
     AlbumDao albumDao;
 
-    // 실험 데이터 집어넣기
+
     @Test
     public void write() throws Exception {
         albumDao.deleteAll();
         assertTrue(albumDao.count()==0);
 
-        AlbumDto dto = new AlbumDto("테스트 중입니다.", "https://youtu.be/kDi0dGmedmM", "reprisal123", "잘 되나?");
+        AlbumDto dto = new AlbumDto("테스트 중입니다.", "kDi0dGmedmM", "reprisal123", "잘 되나?");
+        System.out.println("dto = " + dto);
         assertTrue(albumDao.insert(dto)==1);
         assertTrue(albumDao.count()==1);
 
-        dto = new AlbumDto("테스트 중입니다.", "https://youtu.be/kDi0dGmedmM", "reprisal123", "잘 되나?");
+        dto = new AlbumDto("테스트 중입니다.", "OtYV-AywbRM", "reprisal123", "잘 되나?");
+        System.out.println("dto = " + dto);
         assertTrue(albumDao.insert(dto)==1);
         assertTrue(albumDao.count()==2);
     }
 
     @Test
-    public void getList() {
+    public void getList() throws Exception {
+        List<AlbumDto> list = albumDao.selectAll("reprisal123");
+        for(AlbumDto dto : list) {
+            System.out.println("dto = " + dto);
+        }
     }
 
     @Test

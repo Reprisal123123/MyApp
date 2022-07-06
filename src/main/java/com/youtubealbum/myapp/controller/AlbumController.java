@@ -30,7 +30,7 @@ public class AlbumController {
         HttpSession session = request.getSession();
         String writer = (String)session.getAttribute("id");
 
-        // writer가 가지고 있는 Album 목록을 가져옴
+        // 해당 writer가 가지고 있는 Album 목록을 가져옴
         try {
             List<AlbumDto> list = albumService.getList(writer);
             m.addAttribute("list", list);
@@ -38,6 +38,7 @@ public class AlbumController {
             e.printStackTrace();
         }
 
+        // view
         return "albumList";
     }
 
