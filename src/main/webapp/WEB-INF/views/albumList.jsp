@@ -89,11 +89,12 @@
                     <th class="video">동영상</th>
                     <th class="title">제목</th>
                     <th class="comment">코멘트</th>
-                    <c:forEach var="albumDto" items="${list}">
+                    <c:forEach var="albumDto" items="${list}" varStatus="status">
                         <tr>
+<%--                            <td>${status.index}</td>--%>
                             <td class="no">${albumDto.ano}</td>
                             <td class="video">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kDi0dGmedmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/${albumDto.sigid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </td>
                             <td class="title">${albumDto.title}</td>
                             <td class="comment">${albumDto.comment}</td>
